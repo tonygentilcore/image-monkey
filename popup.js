@@ -11,14 +11,17 @@ const filters = {
 }
 
 const css = ({ blur, brightness, contrast, grayscale, hue, invert, saturate }) => `
-img {
+img, video {
   filter: blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) invert(${invert}%) saturate(${saturate}%) !important
 }
 `
 
 function applyFilter () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.insertCSS(tabs[0].id, { code: css(filters) })
+    chrome.tabs.insertCSS(tabs[0].id, {
+      allFrames: true,
+      code: css(filters)
+    })
   })
 }
 
