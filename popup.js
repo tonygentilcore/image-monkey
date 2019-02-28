@@ -11,7 +11,7 @@ const filters = {
 }
 
 const css = ({ blur, brightness, contrast, grayscale, hue, invert, saturate }) => `
-img, video {
+canvas, img, svg, video {
   filter: blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) grayscale(${grayscale}%) hue-rotate(${hue}deg) invert(${invert}%) saturate(${saturate}%) !important
 }
 `
