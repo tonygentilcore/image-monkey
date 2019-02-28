@@ -1,14 +1,17 @@
 'use strict'
 
-const filters = {
+const filtersInit = {
   blur: 0,
   brightness: 100,
   contrast: 100,
   grayscale: 0,
   hue: 0,
   invert: 0,
-  saturate: 100
+  saturate: 100,
+  reset: () => { Object.assign(filters, filtersInit) }
 }
+const filters = {}
+filtersInit.reset()
 
 const css = ({ blur, brightness, contrast, grayscale, hue, invert, saturate }) => `
 canvas, img, svg, video {
@@ -26,10 +29,11 @@ function applyFilter () {
 }
 
 const gui = new dat.GUI({ hideable: false })
-gui.add(filters, 'blur', 0, 10).onChange(applyFilter)
-gui.add(filters, 'brightness', 0, 400).onChange(applyFilter)
-gui.add(filters, 'contrast', 0, 400).onChange(applyFilter)
-gui.add(filters, 'grayscale', 0, 100).onChange(applyFilter)
-gui.add(filters, 'hue', 0, 360).onChange(applyFilter)
-gui.add(filters, 'invert', 0, 100).onChange(applyFilter)
-gui.add(filters, 'saturate', 0, 400).onChange(applyFilter)
+gui.add(filters, 'blur', 0, 10).onChange(applyFilter).listen()
+gui.add(filters, 'brightness', 0, 400).onChange(applyFilter).listen()
+gui.add(filters, 'contrast', 0, 400).onChange(applyFilter).listen()
+gui.add(filters, 'grayscale', 0, 100).onChange(applyFilter).listen()
+gui.add(filters, 'hue', 0, 360).onChange(applyFilter).listen()
+gui.add(filters, 'invert', 0, 100).onChange(applyFilter).listen()
+gui.add(filters, 'saturate', 0, 400).onChange(applyFilter).listen()
+gui.add(filters, 'reset').onChange(applyFilter)
