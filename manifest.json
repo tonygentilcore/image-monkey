@@ -2,12 +2,8 @@
   "name": "Image Filter",
   "version": "1.0",
   "description": "Filter all images on any page!",
-  "permissions": ["activeTab", "declarativeContent"],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "page_action": {
+  "permissions": ["activeTab"],
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/get_started16.png",
